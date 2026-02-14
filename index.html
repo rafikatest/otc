@@ -285,8 +285,8 @@ const BOT_TOKEN = 'BOT_TOKEN_PLACEHOLDER';
             const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
             if (match) fileId = match[1];
         }
-        // Return format download langsung jika file ID ditemukan
-        return fileId ? `https://drive.google.com/uc?id=${fileId}&export=download` : url;
+        // Return format download langsung jika file ID ditemukan (tambah &confirm=t untuk bypass preview)
+        return fileId ? `https://drive.google.com/uc?id=${fileId}&export=download&confirm=t` : url;
     }
 
     async function loadMods() {
@@ -339,7 +339,7 @@ const BOT_TOKEN = 'BOT_TOKEN_PLACEHOLDER';
                         </div>
                         <h3 style="margin:10px 0 5px; font-size:18px;">${nama}</h3>
                         <p style="font-size:13px; color:#aaa; margin-bottom:15px; height:40px; overflow:hidden;">${desc}</p>
-                        ${price === 'Free' ? `<a href="${link}" class="btn-dl" download target="_blank">⬇️ DOWNLOAD</a>` : `<button class="btn-dl" onclick="openBuyModal('${nama}', '${price}')">🛒 ORDER</button>`}
+                        ${price === 'Free' ? `<a href="${link}" class="btn-dl" download="${nama}" target="_blank">⬇️ DOWNLOAD</a>` : `<button class="btn-dl" onclick="openBuyModal('${nama}', '${price}')">🛒 ORDER</button>`}
                     </div>
                 </div>`;
             });
